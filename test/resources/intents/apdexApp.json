@@ -1,0 +1,53 @@
+{
+  "id": "9baecab9-71b2-41a4-8b9e-dde63d9cd0a1",
+  "name": "davisApdexApp",
+  "auto": true,
+  "contexts": [],
+  "responses": [
+    {
+      "resetContexts": false,
+      "affectedContexts": [],
+      "parameters": [
+        {
+          "id": "4e6afd1a-8bda-4ca5-93d2-7735d9b5c565",
+          "required": false,
+          "dataType": "@apdex",
+          "name": "apdex",
+          "value": "$apdex",
+          "isList": false
+        },
+        {
+          "id": "35e9a72f-a171-4dbd-bd32-6d72bc935ab6",
+          "required": false,
+          "dataType": "@application",
+          "name": "application",
+          "value": "$application",
+          "isList": false
+        },
+        {
+          "id": "fff1b6cf-9896-4148-8579-bb7ed03b19b6",
+          "required": false,
+          "dataType": "@sys.date-time",
+          "name": "date-time",
+          "value": "$date-time",
+          "isList": false
+        }
+      ],
+      "messages": [
+        {
+          "type": 0,
+          "lang": "en",
+          "speech": []
+        }
+      ],
+      "defaultResponsePlatforms": {},
+      "speech": []
+    }
+  ],
+  "priority": 750000,
+  "webhookUsed": true,
+  "webhookForSlotFilling": false,
+  "lastUpdate": 1545255182,
+  "fallbackIntent": false,
+  "events": []
+}

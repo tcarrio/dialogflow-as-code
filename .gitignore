@@ -1,0 +1,12 @@
+dist/
+lib/
+node_modules/
+service-account-key.json
+.vscode/
+input/
+output/
+input-example/
+!input/.gitkeep
+test-results.xml
+test/resources/testOutput
+test/resources/test-dac/dist/

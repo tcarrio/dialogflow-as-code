@@ -1,0 +1,15 @@
+export const serviceKey = () => JSON.stringify(serviceKeyContent, null, 2);
+
+const serviceKeyContent = {
+  type: "service_account",
+  project_id: "a-project-id",
+  private_key_id: "a-private-key-id",
+  private_key:
+    "-----BEGIN PRIVATE KEY-----\nG07CH4\n-----END PRIVATE KEY-----\n",
+  client_email: "user@domain.tld",
+  client_id: "0123456789",
+  auth_uri: "https://sub.domain.tld",
+  token_uri: "https://sub.domain.tld",
+  auth_provider_x509_cert_url: "https://sub.domain.tld",
+  client_x509_cert_url: "https://sub.domain.tld",
+};

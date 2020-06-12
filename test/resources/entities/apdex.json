@@ -1,0 +1,9 @@
+{
+  "id": "01d2ad44-793c-4f24-b389-f6dc148aca97",
+  "name": "apdex",
+  "isOverridable": true,
+  "isEnum": true,
+  "isRegexp": false,
+  "automatedExpansion": false,
+  "allowFuzzyExtraction": false
+}
