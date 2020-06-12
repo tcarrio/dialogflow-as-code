@@ -1,3 +1,5 @@
+[![builds.sr.ht status](https://builds.sr.ht/~tcarrio/dialogflow-as-code/.build.yml.svg)](https://builds.sr.ht/~tcarrio/dialogflow-as-code/.build.yml?) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+
 # dialogflow-as-code
 
 This package allows the creation of Dialogflow resources by using the [nodejs-dialogflow](https://github.com/googleapis/nodejs-dialogflow) project along with the types we have helped define in [@types/dialogflow](https://www.npmjs.com/package/@types/dialogflow). It was developed using Node.js and TypeScript.
