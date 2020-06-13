@@ -1,4 +1,4 @@
-[![builds.sr.ht status](https://builds.sr.ht/~tcarrio/dialogflow-as-code/.build.yml.svg)](https://builds.sr.ht/~tcarrio/dialogflow-as-code/.build.yml?) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+![npm (scoped)](https://img.shields.io/npm/v/@0xc/dialogflow-as-code) [![builds.sr.ht status](https://builds.sr.ht/~tcarrio/dialogflow-as-code/.build.yml.svg)](https://builds.sr.ht/~tcarrio/dialogflow-as-code/.build.yml?) [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
 # dialogflow-as-code
 
