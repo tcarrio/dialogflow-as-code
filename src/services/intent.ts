@@ -49,6 +49,7 @@ class IntentsService {
     }
 
     for (let intent of intents) {
+      this.logger.log(`Mapping ${intent.displayName} to ${intent.name}`)
       this.mapper.setName(intent.displayName, intent.name!);
     }
 
