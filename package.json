@@ -1,6 +1,6 @@
 {
   "name": "@0xc/dialogflow-as-code",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "main": "dist/index.js",
   "scripts": {
     "convert": "TS_NODE_FILES=true ts-node src/converter/cli.ts",
