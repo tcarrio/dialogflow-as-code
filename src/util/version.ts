@@ -1,7 +1,5 @@
-export function getVersion() {
-  let version: string | undefined;
-  try {
-    version = require("../../package.json").version;
-  } catch {}
-  return version ? version : "‾\\_⪽⪾_/‾";
+import { loadPackageJson } from "./load-package-json";
+
+export function getVersion(): string {
+  return loadPackageJson().version;
 }

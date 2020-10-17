@@ -1,9 +1,9 @@
 import { VariableNamer } from "../variable-namer";
-import * as manifest from "../../../../package.json";
+import { loadPackageJson } from "../../../util/load-package-json";
 
 export class ImportTemplate extends VariableNamer {
   private _imports: { [key: string]: Set<string> } = {};
-  private package: string = manifest.name;
+  private package: string = loadPackageJson().name;
 
   protected templateImports(): string {
     const importList: string[] = [];
