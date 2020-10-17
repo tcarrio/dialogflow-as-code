@@ -1,8 +1,14 @@
 import { Service } from "typedi";
 
+export enum LogLevel {
+  SILENT,
+  NORMAL,
+  VERBOSE,
+}
+
 @Service()
 export class LoggerService {
-  constructor(private logLevel: LogLevel = LogLevel.SILENT) {}
+  public constructor(private logLevel: LogLevel = LogLevel.SILENT) {}
 
   public log(value: any) {
     if (this.logLevel >= LogLevel.NORMAL) {
@@ -40,10 +46,4 @@ export class LoggerService {
       return value;
     };
   }
-}
-
-export enum LogLevel {
-  SILENT,
-  NORMAL,
-  VERBOSE,
 }

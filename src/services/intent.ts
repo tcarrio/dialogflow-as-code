@@ -49,7 +49,7 @@ class IntentsService {
     }
 
     for (let intent of intents) {
-      this.logger.log(`Mapping ${intent.displayName} to ${intent.name}`)
+      this.logger.log(`Mapping ${intent.displayName} to ${intent.name}`);
       this.mapper.setName(intent.displayName, intent.name!);
     }
 
@@ -76,8 +76,8 @@ class IntentsService {
     const name = this.mapper.getName(displayName);
     return name === null
       ? null
-      : this.getIntents().then(intents => {
-          const matches = intents.filter(x => x.displayName == displayName);
+      : this.getIntents().then((intents) => {
+          const matches = intents.filter((x) => x.displayName == displayName);
           if (matches.length === 1) {
             return matches[0];
           }
@@ -111,7 +111,7 @@ class IntentsService {
     if (name !== null) {
       return this.updateIntent({ ...intent, name });
     }
-    return this.getIntentByDisplayName(displayName).then(existingIntent => {
+    return this.getIntentByDisplayName(displayName).then((existingIntent) => {
       if (existingIntent !== null) {
         return this.updateIntent({
           ...intent,

@@ -1,18 +1,21 @@
 import "reflect-metadata";
 
+import * as fs from "fs";
 import Container from "typedi";
-import { KEY_FILENAME, DIALOGFLOW_CONFIG } from "../util";
-import { DialogflowServiceAccount } from "../config";
 import { DialogflowBuilder } from "../builder";
-import { DialogflowCreator } from "../sync";
+import { DialogflowServiceAccount } from "../config";
 import { IntentsService } from "../services";
-import { etSample, etFruit } from "./entities";
-import { ntFruitInfo, ntFruitReminder } from "./intents";
 import { LoggerService, LogLevel } from "../services/logger";
+import { DialogflowCreator } from "../sync";
+import { DIALOGFLOW_CONFIG, KEY_FILENAME } from "../util";
+import { etFruit, etSample } from "./entities";
+import { ntFruitInfo, ntFruitReminder } from "./intents";
 
 export async function sample(logLevel: LogLevel = 0) {
-  const svcAcctKeyJson: string = "service-account-key.json";
-  const svcAcctConfig: DialogflowServiceAccount = require(`../../${svcAcctKeyJson}`);
+  const svcAcctKeyJson = "service-account-key.json";
+  const svcAcctConfig: DialogflowServiceAccount = JSON.parse(
+    fs.readFileSync(`../../${svcAcctKeyJson}`, { encoding: "utf8" }),
+  );
   Container.set(KEY_FILENAME, svcAcctKeyJson);
   Container.set(DIALOGFLOW_CONFIG, svcAcctConfig);
 
@@ -32,7 +35,7 @@ export async function sample(logLevel: LogLevel = 0) {
   if (logger) {
     (await Container.get(IntentsService))
       .getIntents()
-      .then(intents =>
+      .then((intents) =>
         logger.verbose(`Intents: ${JSON.stringify(intents, null, 2)}`),
       );
   }

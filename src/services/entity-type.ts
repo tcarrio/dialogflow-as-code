@@ -28,7 +28,7 @@ class EntityTypeService {
   private entityTypesClient: EntityTypesClient;
   private projectAgentPath: string;
 
-  constructor(
+  public constructor(
     @Inject(DIALOGFLOW_CONFIG) svcAcctConfig: DialogflowServiceAccount,
     @Inject(() => LoggerService) private logger: LoggerService,
   ) {
@@ -53,16 +53,16 @@ class EntityTypeService {
     displayName: string,
   ): Promise<EntityType | null> {
     return this.getEntityTypes()
-      .then(entities => {
+      .then((entities) => {
         const matches = entities.filter(
-          entity => entity.displayName === displayName,
+          (entity) => entity.displayName === displayName,
         );
         if (matches.length === 1) {
           return matches[0];
         }
         return null;
       })
-      .catch(err => {
+      .catch((err) => {
         throw err;
       });
   }
@@ -260,6 +260,8 @@ class EntityTypeService {
   }
 }
 
-type EntityMap = { [displayName: string]: EntityType };
+interface EntityMap {
+  [displayName: string]: EntityType;
+}
 
 export { EntityTypeService };

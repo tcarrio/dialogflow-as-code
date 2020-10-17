@@ -12,7 +12,7 @@ async function main(options: Options) {
   const runner = new TestRunner(options);
   const results: TestResults[] = await runner.runAllTests(options.tests);
   await Promise.all(
-    options.reporters.map(reporter => {
+    options.reporters.map((reporter) => {
       reporter.formatData(results);
       if (reporter.buildChart !== undefined) {
         reporter.buildChart();

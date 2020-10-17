@@ -1,8 +1,8 @@
 import { Intent } from "dialogflow";
-import _ from "lodash";
 import Container from "typedi";
 import { LoggerService } from "../services/logger";
 import { Field, NestedDiff, nestedDiff } from ".";
+import { intentDiffFields } from "./fields";
 
 export function diffIntents(
   newIntents: Intent[],
@@ -11,20 +11,18 @@ export function diffIntents(
 ): NestedDiff<Intent>[] {
   const logger: LoggerService = Container.get(LoggerService);
   logger.verbose(
-    `Started diffIntents: (New: ${newIntents.length}, Old: ${
-      oldIntents.length
-    })`,
+    `Started diffIntents: (New: ${newIntents.length}, Old: ${oldIntents.length})`,
   );
   logger.verbose(
-    `New intents display names: ${newIntents.map(i => i.displayName)}`,
+    `New intents display names: ${newIntents.map((i) => i.displayName)}`,
   );
   logger.verbose(
-    `Old intents display names: ${oldIntents.map(i => i.displayName)}`,
+    `Old intents display names: ${oldIntents.map((i) => i.displayName)}`,
   );
   const map: { [displayName: string]: { old?: Intent; new?: Intent } } = {};
 
-  newIntents.forEach(intent => (map[intent.displayName] = { new: intent }));
-  oldIntents.forEach(intent => {
+  newIntents.forEach((intent) => (map[intent.displayName] = { new: intent }));
+  oldIntents.forEach((intent) => {
     if (map[intent.displayName] !== undefined) {
       logger.verbose(`Found key: ${intent.displayName}`);
       map[intent.displayName].old = intent;
@@ -37,25 +35,6 @@ export function diffIntents(
 
   logger.verbose("Nested diff of found intents");
   return Object.keys(map)
-    .map(name => nestedDiff<Intent>(map[name].new!, map[name].old!, fields))
+    .map((name) => nestedDiff<Intent>(map[name].new!, map[name].old!, fields))
     .filter((x: object) => Object.keys(x).length !== 0);
 }
-
-const intentDiffFields: Field[] = [
-  { value: "webhookState" },
-  { value: "priority" },
-  { value: "isFallback" },
-  { value: "mlEnabled" },
-  {
-    value: "trainingPhrases",
-    subfields: [
-      { value: "name" },
-      {
-        value: "parts",
-        subfields: [{ value: "text" }, { value: "entityType" }],
-      },
-    ],
-  },
-  { value: "inputContextNames" },
-  { value: "events" },
-];

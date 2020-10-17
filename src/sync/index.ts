@@ -79,7 +79,7 @@ export class DialogflowCreator {
   @ResourceStage("Parent Intent Creation")
   private async parentIntentCreate(inst: DialogflowInstructions) {
     const operations = _.chain(inst.intents.create)
-      .filter(i => i.parentFollowupIntentName === undefined)
+      .filter((i) => i.parentFollowupIntentName === undefined)
       .value();
 
     if (operations.length === 0) {
@@ -94,8 +94,8 @@ export class DialogflowCreator {
     await this.updateCache();
 
     const operations = _.chain(inst.intents.create)
-      .filter(i => i.parentFollowupIntentName !== undefined)
-      .map(i =>
+      .filter((i) => i.parentFollowupIntentName !== undefined)
+      .map((i) =>
         this.mapFollowupParentNames(i, this.intentsService, this.mapper),
       )
       .value();
@@ -110,7 +110,7 @@ export class DialogflowCreator {
   @ResourceStage("Parent Intent Update")
   private async parentIntentUpdate(inst: DialogflowInstructions) {
     const operations = _.chain(inst.intents.update)
-      .filter(i => i.parentFollowupIntentName === undefined)
+      .filter((i) => i.parentFollowupIntentName === undefined)
       .value();
 
     if (operations.length === 0) {
@@ -125,8 +125,8 @@ export class DialogflowCreator {
     await this.updateCache();
 
     const operations = _.chain(inst.intents.update)
-      .filter(i => i.parentFollowupIntentName !== undefined)
-      .map(i =>
+      .filter((i) => i.parentFollowupIntentName !== undefined)
+      .map((i) =>
         this.mapFollowupParentNames(i, this.intentsService, this.mapper),
       )
       .value();
@@ -146,7 +146,9 @@ export class DialogflowCreator {
       return;
     }
 
-    await this.intentsService.batchDeleteIntents(operations.map(i => i.name!));
+    await this.intentsService.batchDeleteIntents(
+      operations.map((i) => i.name!),
+    );
   }
 
   private async delayForTraining(inst: DialogflowInstructions) {
@@ -161,7 +163,7 @@ export class DialogflowCreator {
     ms: number,
     message: string = "before deleting entity types...",
   ) {
-    return new Promise((res, rej) => {
+    return new Promise((res, _rej) => {
       this.logger.log(`Waiting ${ms}ms ${message}`);
       setTimeout(res, ms);
     });
@@ -170,7 +172,7 @@ export class DialogflowCreator {
   @ResourceStage("Entity Type Deletion")
   private async entityTypeDeletion(inst: DialogflowInstructions) {
     await this.entityTypesService.batchDeleteEntityTypes(
-      inst.entityTypes.delete.map(e => e.name!),
+      inst.entityTypes.delete.map((e) => e.name!),
     );
   }
 
@@ -201,13 +203,13 @@ export class DialogflowCreator {
   }
 
   private mapIntentsContexts(intents: Intent[]): Intent[] {
-    return intents.map(intent => {
+    return intents.map((intent) => {
       return {
         ...intent,
-        outputContexts: intent.outputContexts!.map(ctx => {
+        outputContexts: intent.outputContexts!.map((ctx) => {
           return { ...ctx, name: this.contextInPath(ctx.name!) };
         }),
-        inputContextNames: intent.inputContextNames!.map(name =>
+        inputContextNames: intent.inputContextNames!.map((name) =>
           this.contextInPath(name),
         ),
       };

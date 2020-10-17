@@ -2,7 +2,7 @@ import { EntityType } from "dialogflow";
 import { LoggerService } from "../services/logger";
 import Container from "typedi";
 
-export const intentNameRegex: RegExp = /^projects\/\w+-\w+\/agent\/intents\/w+$/;
+export const intentNameRegex = /^projects\/\w+-\w+\/agent\/intents\/w+$/;
 
 export function toJson(err: Record<string, any>) {
   return JSON.stringify(err, null, 2);
@@ -18,14 +18,14 @@ export function entityLogger(entityType: EntityType) {
 
 export function processGrpc<T>(p: Promise<[T]>, stage?: string): Promise<T> {
   return p
-    .then(response => {
+    .then((response) => {
       if (response !== null && response.length > 0) {
         return response[0];
       }
       throw new Error("Null value in gRPC response");
     })
-    .catch(err => {
-      (<LoggerService>Container.get(LoggerService)).error(
+    .catch((err) => {
+      (Container.get(LoggerService) as LoggerService).error(
         `Error encountered: ${stage}`,
       );
       throw err;

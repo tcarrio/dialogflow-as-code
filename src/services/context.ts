@@ -9,7 +9,7 @@ class ContextService {
   private sessionPath: string;
   // private contextPath: string;
 
-  constructor(
+  public constructor(
     @Inject(DIALOGFLOW_CONFIG) private svcAcctConfig: DialogflowServiceAccount,
   ) {
     this.contextsClient = new ContextsClient({ credentials: svcAcctConfig });
@@ -21,15 +21,15 @@ class ContextService {
   }
 
   // TODO: Implement contexts if necessary
-  async getContexts(): Promise<Context[]> {
+  public async getContexts(): Promise<Context[]> {
     return [];
   }
 
-  getSessionPath() {
+  public getSessionPath() {
     return this.sessionPath;
   }
 
-  setSessionPath(sessionName: string = "-") {
+  public setSessionPath(sessionName: string = "-") {
     this.sessionPath = this.contextsClient.sessionPath(
       this.svcAcctConfig.project_id,
       sessionName,

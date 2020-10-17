@@ -33,10 +33,10 @@ function buildProgram() {
 
 const CLI = buildProgram();
 
-let outputDirectory: string = "./output";
+let outputDirectory = "./output";
 if (CLI.output) outputDirectory = CLI.output;
 
-let inputDirectory: string = "./input";
+let inputDirectory = "./input";
 if (CLI.input) inputDirectory = CLI.input;
 
 main(inputDirectory, outputDirectory);

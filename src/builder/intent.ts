@@ -1,7 +1,5 @@
 import { Intent, Parameter, Message, Context } from "dialogflow";
-import _ from "lodash";
-
-import { MessageBuilder } from ".";
+import { MessageBuilder } from "./message";
 import { ContextBuilder } from "./context";
 import { TrainingPhraseBuilder } from "./training-phrases";
 
@@ -20,7 +18,7 @@ export class IntentBuilder {
     this._params = new Map<string, Parameter>();
   }
   public build(): Intent {
-    this._params.forEach(p => {
+    this._params.forEach((p) => {
       this._intent.parameters!.push(p);
     });
     return this._intent;
@@ -55,9 +53,9 @@ export class IntentBuilder {
     bs: TrainingPhraseBuilder[],
     generateParams: boolean = true,
   ) {
-    bs.forEach(b => {
+    bs.forEach((b) => {
       if (generateParams) {
-        b.extractParameters().forEach(p => {
+        b.extractParameters().forEach((p) => {
           if (!this._params.has(p.displayName)) {
             this._params.set(p.displayName, p);
           }
@@ -73,7 +71,7 @@ export class IntentBuilder {
   }
   public outputContexts(cxs: (Context | ContextBuilder)[]) {
     this._intent.outputContexts!.push(
-      ...cxs.map(cx => {
+      ...cxs.map((cx) => {
         return cx instanceof ContextBuilder ? cx.build() : cx;
       }),
     );
@@ -84,14 +82,14 @@ export class IntentBuilder {
     return this;
   }
   public parameters(ps: Parameter[]) {
-    ps.forEach(p => {
+    ps.forEach((p) => {
       this._params.set(p.displayName, p);
     });
     return this;
   }
   public messages(ms: (Message | MessageBuilder)[]) {
     this._intent.messages!.push(
-      ...ms.map(m => {
+      ...ms.map((m) => {
         return m instanceof MessageBuilder ? m.build() : m;
       }),
     );

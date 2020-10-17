@@ -1,4 +1,4 @@
-import { IBuilder, Indexable } from ".";
+import { IBuilder, Indexable } from "./types";
 import {
   Message,
   Platform,

@@ -7,9 +7,9 @@ class DialogflowService {
   @Inject(KEY_FILENAME)
   private keyFilename!: string;
 
-  constructor() {}
+  public constructor() {}
 
-  public getContextsClient(session: string, context: string): ContextsClient {
+  public getContextsClient(_session: string, _context: string): ContextsClient {
     return new ContextsClient({ keyFilename: this.keyFilename });
   }
 

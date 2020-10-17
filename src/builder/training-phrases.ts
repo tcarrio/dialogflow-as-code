@@ -1,14 +1,9 @@
-import {
-  IBuilder,
-  isBuilder,
-  PartParamStruct,
-  EntityTypeBuilder,
-  PartBuilder,
-} from ".";
-
-import { TrainingPhrase, Parameter, Part, EntityType } from "dialogflow";
-
+import { EntityType, Parameter, Part, TrainingPhrase } from "dialogflow";
 import _ from "lodash";
+import { PartParamStruct } from "./defaults";
+import { EntityTypeBuilder } from "./entity-type";
+import { PartBuilder } from "./parts";
+import { IBuilder, isBuilder } from "./types";
 
 export class TrainingPhraseBuilder implements IBuilder<TrainingPhrase> {
   private _trainingPhrase: TrainingPhrase;
@@ -18,7 +13,7 @@ export class TrainingPhraseBuilder implements IBuilder<TrainingPhrase> {
   public constructor(phrases: TrainingPhraseInput[] = []) {
     const parts: (Part | Part[])[] = [];
     const newPhrases = fixSpacing(phrases);
-    newPhrases.forEach(phrase => {
+    newPhrases.forEach((phrase) => {
       if (typeof phrase === "string") {
         parts.push({ text: phrase });
       } else {
@@ -47,7 +42,7 @@ export class TrainingPhraseBuilder implements IBuilder<TrainingPhrase> {
   }
 
   private addToParams(...params: Parameter[]) {
-    params.forEach(param => {
+    params.forEach((param) => {
       if (!this._paramNames.has(param.displayName)) {
         this._paramNames.add(param.displayName);
         this._params.push(param);

@@ -7,16 +7,14 @@ class AgentsService {
   private agentsClients: AgentsClient;
   private projectId: string = "";
 
-  constructor(
-    @Inject(KEY_FILENAME) keyFilename: string,
-  ) {
+  public constructor(@Inject(KEY_FILENAME) keyFilename: string) {
     this.agentsClients = new AgentsClient({ keyFilename: keyFilename });
-    this.agentsClients.getProjectId().then(projectId => {
+    this.agentsClients.getProjectId().then((projectId) => {
       this.projectId = projectId;
     });
   }
 
-  async getAgent(agentId: string = "") {
+  public async getAgent(agentId: string = "") {
     if (!agentId && !this.projectId) {
       return;
     }

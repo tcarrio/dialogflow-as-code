@@ -5,7 +5,7 @@ import {
   EntityAutoExpansionMode,
 } from "dialogflow";
 
-import { IBuilder } from ".";
+import { IBuilder } from "./types";
 
 export const DEFAULT_ENTITY_TYPE = {
   displayName: "",
@@ -34,7 +34,9 @@ export class EntityTypeBuilder implements IBuilder<EntityType> {
   }
   public entities(entities: (SynonymsBuilder | Entity)[]): EntityTypeBuilder {
     this._entityType.entities.push(
-      ...entities.map(et => (et instanceof SynonymsBuilder ? et.build() : et)),
+      ...entities.map((et) =>
+        et instanceof SynonymsBuilder ? et.build() : et,
+      ),
     );
     this._valid = this._valid | 8;
     return this;

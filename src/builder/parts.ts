@@ -1,6 +1,7 @@
 import { PartParamStruct } from "./defaults";
 import { EntityType, Part, Parameter } from "dialogflow";
-import { IBuilder, retrieveText } from ".";
+import { IBuilder } from "./types";
+import { retrieveText } from "./training-phrases";
 
 export class PartBuilder implements IBuilder<Part[] | PartParamStruct> {
   private _part: Part[] = [];

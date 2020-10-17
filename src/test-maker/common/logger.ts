@@ -6,7 +6,7 @@ export enum LogLevel {
   VERBOSE,
 }
 export class Logger {
-  constructor(private logLevel: LogLevel = LogLevel.NORMAL) {}
+  public constructor(private logLevel: LogLevel = LogLevel.NORMAL) {}
   public setLevel(logLevel: LogLevel): void {
     this.logLevel = logLevel;
   }

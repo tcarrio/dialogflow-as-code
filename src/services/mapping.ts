@@ -5,7 +5,7 @@ export class MappingService {
   private nameMap: { [displayName: string]: string } = {};
   private inverseMap: { [name: string]: string } = {};
 
-  constructor() {}
+  public constructor() {}
 
   public getName(displayName: string): string | null {
     if (displayName in this.nameMap) {
