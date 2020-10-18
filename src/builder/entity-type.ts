@@ -34,8 +34,8 @@ export class EntityTypeBuilder implements IBuilder<EntityType> {
   }
   public entities(entities: (SynonymsBuilder | Entity)[]): EntityTypeBuilder {
     this._entityType.entities.push(
-      ...entities.map((et) =>
-        et instanceof SynonymsBuilder ? et.build() : et,
+      ...entities.map((entity) =>
+        entity instanceof SynonymsBuilder ? entity.build() : entity,
       ),
     );
     this._valid = this._valid | 8;

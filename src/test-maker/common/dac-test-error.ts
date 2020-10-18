@@ -1,4 +1,5 @@
 import { StatusCode } from "./status-code";
+
 export class DACTestError extends Error {
   public readonly code: StatusCode;
   public constructor(message: string, code: StatusCode) {
@@ -6,4 +7,4 @@ export class DACTestError extends Error {
     Object.setPrototypeOf(this, DACTestError.prototype);
     this.code = code;
   }
-};
+}

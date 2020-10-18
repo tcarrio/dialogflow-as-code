@@ -25,7 +25,7 @@ export function processGrpc<T>(p: Promise<[T]>, stage?: string): Promise<T> {
       throw new Error("Null value in gRPC response");
     })
     .catch((err) => {
-      (Container.get(LoggerService) as LoggerService).error(
+      Container.get(LoggerService).error(
         `Error encountered: ${stage}`,
       );
       throw err;

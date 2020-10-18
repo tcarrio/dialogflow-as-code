@@ -33,7 +33,7 @@ export async function sample(logLevel: LogLevel = 0) {
   await dfc.sync(resources);
 
   if (logger) {
-    (await Container.get(IntentsService))
+    await Container.get(IntentsService)
       .getIntents()
       .then((intents) =>
         logger.verbose(`Intents: ${JSON.stringify(intents, null, 2)}`),

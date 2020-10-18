@@ -60,31 +60,31 @@ export class TrainingPhraseBuilder implements IBuilder<TrainingPhrase> {
 
 const punctuation: Set<string> = new Set<string>(["?", ",", "."]);
 
-function fixSpacing(phrases: TrainingPhraseInput[]): TrainingPhraseInput[] {
-  if (phrases.length <= 1) {
-    return phrases;
+function fixSpacing(inputPhrases: TrainingPhraseInput[]): TrainingPhraseInput[] {
+  if (inputPhrases.length <= 1) {
+    return inputPhrases;
   }
 
   const space = " ";
   const newPhrases: TrainingPhraseInput[] = [];
-  for (let index = 0; index < phrases.length - 1; index++) {
-    const phrase = phrases[index];
-    const next = phrases[index + 1];
+  for (let index = 0; index < inputPhrases.length - 1; index++) {
+    const existingPhrase = inputPhrases[index];
+    const next = inputPhrases[index + 1];
 
-    if (typeof phrase === "string" && typeof next === "string") {
-      newPhrases.push(phrase.trimRight() + space + next.trimLeft());
+    if (typeof existingPhrase === "string" && typeof next === "string") {
+      newPhrases.push(existingPhrase.trimRight() + space + next.trimLeft());
       index++;
-    } else if (typeof phrase === "string" && typeof next !== "string") {
-      newPhrases.push(phrase.trimRight() + space);
-    } else if (typeof phrase !== "string" && typeof next === "string") {
-      phrases[index + 1] = space + next.trimLeft();
-      newPhrases.push(phrase);
+    } else if (typeof existingPhrase === "string" && typeof next !== "string") {
+      newPhrases.push(existingPhrase.trimRight() + space);
+    } else if (typeof existingPhrase !== "string" && typeof next === "string") {
+      inputPhrases[index + 1] = space + next.trimLeft();
+      newPhrases.push(existingPhrase);
     } else {
-      newPhrases.push(phrase, space);
+      newPhrases.push(existingPhrase, space);
     }
   }
 
-  let phrase = phrases[phrases.length - 1];
+  let phrase = inputPhrases[inputPhrases.length - 1];
   if (typeof phrase === "string") {
     const trimmed = phrase.trim();
     if (punctuation.has(trimmed)) {

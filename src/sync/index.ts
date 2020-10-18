@@ -207,7 +207,7 @@ export class DialogflowCreator {
       return {
         ...intent,
         outputContexts: intent.outputContexts!.map((ctx) => {
-          return { ...ctx, name: this.contextInPath(ctx.name!) };
+          return { ...ctx, name: this.contextInPath(ctx.name) };
         }),
         inputContextNames: intent.inputContextNames!.map((name) =>
           this.contextInPath(name),

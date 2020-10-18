@@ -146,9 +146,9 @@ export { ${this.templateVariableName()} };
         return `det("${part.meta.substr(5)}")`;
       case PartType.UserGenerated:
         const name = part.meta.substr(1);
-        const varName = getVar(`${ENTITY_PREFIX}_${name}`);
-        if (varName !== null) {
-          return `pb(${varName})`;
+        const entityVarName = getVar(`${ENTITY_PREFIX}_${name}`);
+        if (entityVarName !== null) {
+          return `pb(${entityVarName})`;
         }
         return `pb("${name}")`;
       default:
@@ -205,17 +205,16 @@ export { ${this.templateVariableName()} };
   }
 
   public static processSpeech(speech: string | string[]) {
-    const val = isStringArray ? speech : [speech];
+    const val = isStringArray(speech) ? speech : [speech];
     return JSON.stringify(val);
   }
 
   private messageTypeFrom(msgType: number = 0): string {
-    switch (msgType) {
-      case 999:
-        return "the other one? ¯_(ツ)_/¯";
-      default:
-        return "text";
+    if (msgType === 999) {
+      return "the other one? ¯_(ツ)_/¯";
     }
+
+    return "text";
   }
 
   private templateOutputContexts(): string {
@@ -229,7 +228,7 @@ export { ${this.templateVariableName()} };
     }
     return [...this._outputContexts]
       .filter(x => x.name !== undefined)
-      .map(x => `${varName(x.name!, this.cxPre)},`)
+      .map(x => `${varName(x.name, this.cxPre)},`)
       .join("\n");
   }
 
@@ -247,9 +246,9 @@ export { ${this.templateVariableName()} };
     for (let phrase of this.intent.trainingPhrases) {
       for (let part of phrase.data) {
         if (IntentTemplate.typeOfPart(part) === PartType.UserGenerated) {
-          const varName = getVar(`${ENTITY_PREFIX}_${part.meta.substr(1)}`);
-          if (varName !== null) {
-            this.addImport(varName, `../${ENTITY_TYPE_DIR}`);
+          const entityVarName = getVar(`${ENTITY_PREFIX}_${part.meta.substr(1)}`);
+          if (entityVarName !== null) {
+            this.addImport(entityVarName, `../${ENTITY_TYPE_DIR}`);
           }
         }
       }

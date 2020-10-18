@@ -76,12 +76,12 @@ export class MessageBuilder implements IBuilder<Message> {
         `The '${this._type}' message type was not built successfully`,
       );
     }
-    const msg = {
+    
+    return {
       message: this._type,
       platform: this.platform,
       [this._type]: this._msg,
     };
-    return msg;
   }
 
   public pf(platform: Platform): MessageBuilder {

@@ -35,9 +35,9 @@ export class TestRunner {
   }
   public getExitStatus(results: TestResults[]): StatusCode {
     let [strictfails, laxfails, tests] = [0, 0, 0];
-    results.map(result => {
+    results.forEach(result => {
       tests += result.testResults.length;
-      result.errorStack.map(error => {
+      result.errorStack.forEach(error => {
         if (error.rantest.strict !== undefined && !error.rantest.strict) {
           laxfails++;
         } else {

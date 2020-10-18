@@ -38,7 +38,7 @@ export class MatrixBuilder {
       .fill(0)
       .map(() => new Array(labelMap.labels.length).fill(0));
     for (const xAxisIntentName in matrix) {
-      matrix[xAxisIntentName].map((intent, yAxisIntentIndex) => {
+      matrix[xAxisIntentName].forEach((_intent, yAxisIntentIndex) => {
         const yAxisIntentName =
           matrix[xAxisIntentName][yAxisIntentIndex].actual;
         const xAxisValue = labelMap.numbers[xAxisIntentName];

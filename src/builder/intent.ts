@@ -95,11 +95,11 @@ export class IntentBuilder {
     );
     return this;
   }
-  public followUpOf(intent: string | Intent) {
-    if (typeof intent === "string") {
-      this._intent.parentFollowupIntentName = intent;
+  public followUpOf(parentIntent: string | Intent) {
+    if (typeof parentIntent === "string") {
+      this._intent.parentFollowupIntentName = parentIntent;
     } else {
-      this._intent.parentFollowupIntentName = intent.displayName;
+      this._intent.parentFollowupIntentName = parentIntent.displayName;
     }
     return this;
   }
@@ -141,8 +141,8 @@ export class IntentBuilder {
   public ms(ms: (Message | MessageBuilder)[]) {
     return this.messages(ms);
   }
-  public fo(intent: string | Intent) {
-    return this.followUpOf(intent);
+  public fo(parentIntent: string | Intent) {
+    return this.followUpOf(parentIntent);
   }
 }
 

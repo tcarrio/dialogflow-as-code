@@ -16,7 +16,7 @@ export function entityConverter(entity: Part, entities: EntityType[]): string {
       Math.floor(Math.random() * Math.floor(matched.entities.length - 0.01))
     ].value;
   }
-  if (entity.entityType === "@sys.number") {;
+  if (entity.entityType === "@sys.number") {
     const item = Math.floor(Math.random() * (NumberSynonym.length - 0.01)) + 0;
     return NumberSynonym[item];
   }

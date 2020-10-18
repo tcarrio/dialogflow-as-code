@@ -9,12 +9,12 @@ let _indent = 2;
 export function indent(input: string, tabs: number): string {
   if (!input) return input;
 
-  const indent = new Array(tabs * _indent + 1).join(" ");
-  return indent + input.replace(/\n/g, "\n" + indent);
+  const newIndent = new Array(tabs * _indent + 1).join(" ");
+  return newIndent + input.replace(/\n/g, "\n" + newIndent);
 }
 
-export function setIndent(indent: number) {
-  _indent = indent;
+export function setIndent(newIndent: number) {
+  _indent = newIndent;
 }
 
 export function format(input: string): string {
